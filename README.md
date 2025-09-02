@@ -2,6 +2,8 @@
 
 > A fun exploration project for learning Spark on Kubernetes with k3s, Multipass, and Ansible on Apple Silicon Macs!
 
+*🤖 This project was crafted with the help of Claude Sonnet 4 with GitHub Copilot - because even AI loves playing with Spark! ⚡️*
+
 [![Made with ❤️](https://img.shields.io/badge/Made%20with-❤️-red.svg)](https://github.com/greatkemo/funWithSpark)
 [![ARM64](https://img.shields.io/badge/ARM64-Compatible-green.svg)](https://github.com/greatkemo/funWithSpark)
 [![k3s](https://img.shields.io/badge/k3s-Kubernetes-blue.svg)](https://k3s.io/)
