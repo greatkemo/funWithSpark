@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: spark-shell-test
+spec:
+  serviceAccountName: spark
+  restartPolicy: Never
+  containers:
+  - name: spark-shell
+    image: docker.io/bitnami/spark:3.5.1-debian-12-r0
+    command: ["/bin/bash"]
+    args:
+    - -c
+    - |
+      echo "Testing Spark with scala..."
+      cd /opt/bitnami/spark
+      ./bin/spark-shell --master local[2] <<'EOF'
+      val rdd = sc.parallelize(1 to 1000000)
+      val pi = 4.0 * rdd.map(x => {
+        val x = math.random * 2 - 1
+        val y = math.random * 2 - 1
+        if (x*x + y*y <= 1) 1 else 0
+      }).reduce(_ + _) / 1000000.0
+      println(s"Pi is roughly $pi")
+      System.exit(0)
+      EOF
+      echo "Test completed"
+    resources:
+      limits:
+        memory: "2Gi"
+        cpu: "1000m"

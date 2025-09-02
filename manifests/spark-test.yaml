@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: spark-test
+  labels:
+    app: spark-test
+spec:
+  serviceAccountName: spark
+  restartPolicy: Never
+  containers:
+  - name: spark-test
+    image: docker.io/bitnami/spark:3.5.1-debian-12-r0
+    command: ["/bin/bash"]
+    args:
+    - -c
+    - |
+      echo "Testing Spark cluster..."
+      /opt/bitnami/spark/bin/spark-submit \
+        --class org.apache.spark.examples.SparkPi \
+        --master local[1] \
+        --deploy-mode client \
+        --conf spark.driver.bindAddress=0.0.0.0 \
+        /opt/bitnami/spark/examples/jars/spark-examples_2.12-3.5.1.jar 10
+      echo "Spark test completed with exit code: $?"
+    resources:
+      requests:
+        memory: "1Gi"
+        cpu: "500m"
+      limits:
+        memory: "2Gi"
+        cpu: "1000m"

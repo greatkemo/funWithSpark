@@ -1,0 +1,26 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Kubernetes configs (contains sensitive data)
+*.kubeconfig
+config-k3s
+
+# Ansible
+*.retry
+
+# Temporary files
+*.tmp
+*.log
+
+# IDE
+.vscode/settings.json
+.idea/
+
+# VM specific
+inventory.ini.backup
+
+# Local testing
+test-results/
+temp/

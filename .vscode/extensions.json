@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "ms-kubernetes-tools.vscode-kubernetes-tools",
+    "ms-azuretools.vscode-docker",
+    "ms-vscode-remote.remote-ssh",
+    "redhat.vscode-yaml",
+    "redhat.ansible",
+    "ms-python.python"
+  ]
+}

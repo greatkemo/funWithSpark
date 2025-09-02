@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: spark-pi-simple
+spec:
+  restartPolicy: Never
+  containers:
+  - name: spark-pi
+    image: docker.io/bitnami/spark:3.5.1-debian-12-r0
+    command: ["/opt/bitnami/spark/bin/spark-submit"]
+    args:
+    - "--class"
+    - "org.apache.spark.examples.SparkPi"
+    - "--master"
+    - "local[2]"
+    - "/opt/bitnami/spark/examples/jars/spark-examples_2.12-3.5.1.jar"
+    - "10"
+    env:
+    - name: SPARK_USER
+      value: "spark"
+    resources:
+      requests:
+        memory: "512Mi"
+        cpu: "500m"
+      limits:
+        memory: "1Gi" 
+        cpu: "1000m"

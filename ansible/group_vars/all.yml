@@ -1,0 +1,2 @@
+java_home: /usr/lib/jvm/java-17-openjdk-arm64
+ansible_ssh_common_args: '-o StrictHostKeyChecking=no'

@@ -1,0 +1,45 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: spark-cluster-test
+spec:
+  template:
+    spec:
+      serviceAccountName: spark
+      restartPolicy: Never
+      containers:
+      - name: spark-test
+        image: docker.io/bitnami/spark:3.5.1-debian-12-r0
+        command: ["/bin/bash"]
+        args:
+        - -c
+        - |
+          echo "=== Testing Spark Cluster ==="
+          echo "Java Version:"
+          java -version
+          echo ""
+          echo "Spark Version:"
+          /opt/bitnami/spark/bin/spark-submit --version
+          echo ""
+          echo "Testing basic Spark functionality..."
+          echo "import scala.math.random" > /tmp/pi.scala
+          echo "val n = 100000" >> /tmp/pi.scala
+          echo "val count = spark.sparkContext.parallelize(1 to n, 4).map { i =>" >> /tmp/pi.scala
+          echo "  val x = random * 2 - 1" >> /tmp/pi.scala
+          echo "  val y = random * 2 - 1" >> /tmp/pi.scala
+          echo "  if (x*x + y*y <= 1) 1 else 0" >> /tmp/pi.scala
+          echo "}.reduce(_ + _)" >> /tmp/pi.scala
+          echo "val pi = 4.0 * count / n" >> /tmp/pi.scala
+          echo "println(s\"Pi is roughly \$pi\")" >> /tmp/pi.scala
+          echo "System.exit(0)" >> /tmp/pi.scala
+          
+          echo "Running Spark Shell Test..."
+          timeout 60 /opt/bitnami/spark/bin/spark-shell --master local[2] -i /tmp/pi.scala
+          echo "=== Test Completed ==="
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "500m"
+          limits:
+            memory: "2Gi"
+            cpu: "1000m"

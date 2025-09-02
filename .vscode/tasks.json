@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json.schemastore.org/task.json",
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Create VMs",
+      "type": "shell",
+      "command": "make vms",
+      "problemMatcher": []
+    },
+    {
+      "label": "Setup SSH",
+      "type": "shell",
+      "command": "make ssh",
+      "problemMatcher": []
+    },
+    {
+      "label": "Provision k3s",
+      "type": "shell",
+      "command": "make k3s",
+      "problemMatcher": []
+    },
+    {
+      "label": "Fetch kubeconfig",
+      "type": "shell",
+      "command": "make kubeconfig",
+      "problemMatcher": []
+    },
+    {
+      "label": "Install Spark Operator",
+      "type": "shell",
+      "command": "make helm",
+      "problemMatcher": []
+    },
+    {
+      "label": "Submit Spark Pi",
+      "type": "shell",
+      "command": "make submit",
+      "problemMatcher": []
+    },
+    {
+      "label": "Tail Spark Logs",
+      "type": "shell",
+      "command": "make logs",
+      "problemMatcher": []
+    },
+    {
+      "label": "Demo (end-to-end)",
+      "type": "shell",
+      "command": "make demo",
+      "problemMatcher": []
+    },
+    {
+      "label": "Test Spark Cluster",
+      "type": "shell",
+      "command": "make test",
+      "problemMatcher": []
+    },
+    {
+      "label": "Check Cluster Status",
+      "type": "shell",
+      "command": "make status",
+      "problemMatcher": []
+    },
+    {
+      "label": "Clean Test Resources",
+      "type": "shell",
+      "command": "make clean-tests",
+      "problemMatcher": []
+    },
+    {
+      "label": "Destroy Lab",
+      "type": "shell",
+      "command": "make destroy",
+      "problemMatcher": []
+    }
+  ]
+}
